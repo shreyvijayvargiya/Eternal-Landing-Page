@@ -9,9 +9,7 @@ import {
 	Flame,
 	Mountain,
 	Compass,
-	Apple,
 } from "lucide-react";
-import { BsGoogle } from "react-icons/bs";
 
 // Navigation links for landing page sections
 export const navLinks = [
@@ -253,15 +251,6 @@ export const companies = [
 	"Trello",
 	"Asana",
 	"Notion",
-	"Todoist",
-	"Toodledo",
-	"Wunderlist",
-	"Todoist",
-	"Toodledo",
-	"Wunderlist",
-	"Todoist",
-	"Toodledo",
-	"Wunderlist",
 	"Todoist",
 	"Toodledo",
 	"Wunderlist",

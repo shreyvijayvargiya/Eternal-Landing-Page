@@ -2,7 +2,7 @@ import { CreditCard, DotIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { pricingPlans } from "../constants";
 
-const PricingSection = ({ billingPeriod, setBillingPeriod }) => {
+const PricingSection = ({ billingPeriod, setBillingPeriod, onOpenLogin }) => {
 	return (
 		<motion.section
 			id="pricing"
@@ -96,7 +96,8 @@ const PricingSection = ({ billingPeriod, setBillingPeriod }) => {
 									))}
 								</ul>
 								<button
-									className={`mt-6 w-full py-2 px-4 rounded-full text-sm font-medium transition-all duration-300 ${
+									onClick={() => onOpenLogin?.()}
+									className={`mt-6 w-full py-2 px-4 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
 										plan.popular
 											? "bg-white text-black "
 											: "bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 group-hover:bg-white group-hover:text-black"

@@ -385,6 +385,8 @@ const BlogPostPage = () => {
 	}, [slug]);
 
 	const scrollToSection = (sectionId) => {
+		if (typeof window === "undefined") return;
+
 		const element = document.getElementById(sectionId);
 		if (element) {
 			const offset = 80;

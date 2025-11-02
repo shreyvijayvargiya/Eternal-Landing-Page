@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import BackgroundDots from "./components/BackgroundDots";
 import Navbar from "./components/Navbar";
 import MobileMenu from "./components/MobileMenu";
@@ -15,12 +15,16 @@ import FAQSection from "./components/FAQSection";
 import PricingSection from "./components/PricingSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import LoginForm from "./components/LoginForm";
 
 const EternalLandingPage = () => {
 	const [billingPeriod, setBillingPeriod] = useState("monthly");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
 	const scrollToSection = (sectionId) => {
+		if (typeof window === "undefined") return;
+
 		const element = document.getElementById(sectionId);
 		if (element) {
 			const offset = 80;
@@ -36,6 +40,9 @@ const EternalLandingPage = () => {
 
 	// Handle hash navigation when page loads or hash changes
 	useEffect(() => {
+		// Only run on client side
+		if (typeof window === "undefined") return;
+
 		const handleHashScroll = () => {
 			if (window.location.hash) {
 				const hash = window.location.hash.substring(1); // Remove #
@@ -98,18 +105,20 @@ const EternalLandingPage = () => {
 				isMobileMenuOpen={isMobileMenuOpen}
 				setIsMobileMenuOpen={setIsMobileMenuOpen}
 				scrollToSection={scrollToSection}
+				onOpenLogin={() => setIsLoginModalOpen(true)}
 			/>
 
 			<MobileMenu
 				isMobileMenuOpen={isMobileMenuOpen}
 				setIsMobileMenuOpen={setIsMobileMenuOpen}
 				scrollToSection={scrollToSection}
+				onOpenLogin={() => setIsLoginModalOpen(true)}
 			/>
 
 			<main className="z-50">
 				<LightEffect />
 
-				<HeroSection />
+				<HeroSection onOpenLogin={() => setIsLoginModalOpen(true)} />
 
 				<TrustedBrandsSection />
 
@@ -126,12 +135,18 @@ const EternalLandingPage = () => {
 				<PricingSection
 					billingPeriod={billingPeriod}
 					setBillingPeriod={setBillingPeriod}
+					onOpenLogin={() => setIsLoginModalOpen(true)}
 				/>
 
 				<ContactSection />
 			</main>
 
 			<Footer />
+
+			<LoginForm
+				isOpen={isLoginModalOpen}
+				onClose={() => setIsLoginModalOpen(false)}
+			/>
 		</div>
 	);
 };

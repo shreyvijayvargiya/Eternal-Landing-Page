@@ -66,6 +66,8 @@ const BlogsPage = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const scrollToSection = (sectionId) => {
+		if (typeof window === "undefined") return;
+
 		const element = document.getElementById(sectionId);
 		if (element) {
 			const offset = 80;

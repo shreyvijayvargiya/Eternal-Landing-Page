@@ -10,9 +10,10 @@ const MobileMenu = ({
 	isMobileMenuOpen,
 	setIsMobileMenuOpen,
 	scrollToSection,
+	onOpenLogin,
 }) => {
 	const pathname = usePathname();
-	const isLandingPage = pathname === "/";
+	const isLandingPage = pathname === "/" || !pathname; // Handle SSR case where pathname might be null
 
 	return (
 		<AnimatePresence>
@@ -39,7 +40,10 @@ const MobileMenu = ({
 							<Heater className="w-5 h-5 text-white" />
 							<span className="text-white font-semibold text-lg">Eternal</span>
 						</Link>
-						<div onClick={() => setIsMobileMenuOpen(false)} className="absolute top-4 right-4">
+						<div
+							onClick={() => setIsMobileMenuOpen(false)}
+							className="absolute top-4 right-4"
+						>
 							<X className="w-6 h-6 text-white" />
 						</div>
 
@@ -93,8 +97,11 @@ const MobileMenu = ({
 						</div>
 
 						<button
-							onClick={() => setIsMobileMenuOpen(false)}
-							className="relative flex gap-1 items-center justify-center p-3 rounded-full group bg-white hover:text-white text-black transition-all duration-300 ease-in mt-4"
+							onClick={() => {
+								setIsMobileMenuOpen(false);
+								onOpenLogin?.();
+							}}
+							className="relative flex gap-1 items-center justify-center p-3 rounded-full group bg-white hover:text-white text-black transition-all duration-300 ease-in mt-4 cursor-pointer"
 						>
 							<div className="absolute left-0 bottom-0 w-0 z-0 invisible group-hover:visible transition-all duration-300 ease-in group-hover:w-full bg-blue-800 rounded-full h-full" />
 							<ArrowRight className="w-5 h-5 p-1 bg-blue-800 z-40 group-hover:bg-transparent rounded-full text-zinc-100 transition-all duration-300 ease-in" />

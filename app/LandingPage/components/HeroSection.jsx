@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const HeroSection = () => {
+const HeroSection = ({ onOpenLogin }) => {
 	return (
 		<motion.section
 			id="about"
@@ -39,7 +39,10 @@ const HeroSection = () => {
 					Create intelligent agents to automate, analyze, and make decisions.
 				</p>
 				<div className="flex gap-4 justify-center my-10">
-					<button className="relative flex gap-1 items-center p-2 rounded-full group bg-white text-black hover:text-white transition-all duration-300 ease-in">
+					<button
+						onClick={() => onOpenLogin?.()}
+						className="relative flex gap-1 items-center p-2 rounded-full group bg-white text-black hover:text-white transition-all duration-300 ease-in cursor-pointer"
+					>
 						<div className="absolute left-0 bottom-0 w-0 z-0 invisible group-hover:visible transition-all duration-300 ease-in group-hover:w-full bg-blue-800 rounded-full h-full" />
 						<ArrowRight className="w-5 h-5 p-1 bg-blue-800 z-40 group-hover:bg-transparent rounded-full text-zinc-100 transition-all duration-300 ease-in" />
 						<span className="z-50 text-sm">Get Started</span>
