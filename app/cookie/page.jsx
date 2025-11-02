@@ -26,7 +26,7 @@ const CookiePolicyPage = () => {
 					</p>
 
 					<div className="space-y-8">
-						<section className="border border-zinc-900 rounded-xl p-6 bg-gradient-to-r from-black to-zinc-950">
+						<section>
 							<h2 className="text-2xl font-semibold text-zinc-300 mb-4">
 								What Are Cookies?
 							</h2>
@@ -40,7 +40,7 @@ const CookiePolicyPage = () => {
 							</p>
 						</section>
 
-						<section className="border border-zinc-900 rounded-xl p-6 bg-gradient-to-r from-black to-zinc-950">
+						<section>
 							<h2 className="text-2xl font-semibold text-zinc-300 mb-4">
 								How We Use Cookies
 							</h2>
@@ -67,7 +67,7 @@ const CookiePolicyPage = () => {
 							</ul>
 						</section>
 
-						<section className="border border-zinc-900 rounded-xl p-6 bg-gradient-to-r from-black to-zinc-950">
+						<section>
 							<h2 className="text-2xl font-semibold text-zinc-300 mb-4">
 								Types of Cookies We Use
 							</h2>
@@ -95,7 +95,7 @@ const CookiePolicyPage = () => {
 							</div>
 						</section>
 
-						<section className="border border-zinc-900 rounded-xl p-6 bg-gradient-to-r from-black to-zinc-950">
+						<section>
 							<h2 className="text-2xl font-semibold text-zinc-300 mb-4">
 								Third-Party Cookies
 							</h2>
@@ -114,7 +114,7 @@ const CookiePolicyPage = () => {
 							</p>
 						</section>
 
-						<section className="border border-zinc-900 rounded-xl p-6 bg-gradient-to-r from-black to-zinc-950">
+						<section>
 							<h2 className="text-2xl font-semibold text-zinc-300 mb-4">
 								Managing Cookies
 							</h2>
@@ -141,7 +141,7 @@ const CookiePolicyPage = () => {
 							</p>
 						</section>
 
-						<section className="border border-zinc-900 rounded-xl p-6 bg-gradient-to-r from-black to-zinc-950">
+						<section>
 							<h2 className="text-2xl font-semibold text-zinc-300 mb-4">
 								Contact Us
 							</h2>
