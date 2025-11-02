@@ -14,6 +14,7 @@ A modern, professional Next.js landing page template with smooth animations, res
 - [Getting Started](#-getting-started)
 - [Project Structure](#-project-structure)
 - [Components & Sections](#-components--sections)
+- [Recent Updates](#-recent-updates)
 - [Code Flow](#-code-flow)
 - [Customization Guide](#-customization-guide)
 - [Advanced Customization](#-advanced-customization)
@@ -85,8 +86,14 @@ eternal-landing-page-nextjs/
 ├── app/
 │   ├── LandingPage/          # Main landing page
 │   │   ├── components/       # Reusable components
+│   │   │   ├── LoginForm.jsx # Login modal component
+│   │   │   └── ...           # Other components
 │   │   ├── constants.js      # Data & configuration
 │   │   └── index.jsx         # Landing page entry point
+│   ├── blogs/                # Blog section
+│   │   ├── page.jsx          # Blog listing page
+│   │   └── [slug]/          # Dynamic blog post pages
+│   │       └── page.jsx      # Individual blog post
 │   ├── privacy/              # Privacy Policy page
 │   ├── cookie/               # Cookie Policy page
 │   ├── not-found.jsx         # 404 Error page
@@ -234,6 +241,58 @@ The template consists of modular, reusable components. Here's what each section 
   - Modify social media URLs (line 82-112)
   - Change copyright text (line 14-16)
 
+#### **12. LoginForm** (`components/LoginForm.jsx`)
+
+- **Purpose**: Full-screen login modal with animated icon card stack
+- **Features**:
+  - Email and password login form
+  - Google OAuth login button
+  - Terms and Privacy Policy links
+  - Animated icon card stack on left side (using Framer Motion)
+  - Responsive design (mobile-friendly)
+- **Props**:
+  - `isOpen`: Boolean to control modal visibility
+  - `onClose`: Function to close the modal
+- **Animations**:
+  - Uses `useMotionValue` and `useTransform` for smooth card stack interactions
+  - Staggered card entrance animations
+  - Interactive hover effects on entire stack
+- **Trigger**: Opens when "Get Started" buttons are clicked throughout the site
+- **Customization**:
+  - Update form fields, validation, or styling
+  - Integrate with your authentication backend
+  - Modify icon cards and colors
+
+### Blog Pages
+
+#### **Blog Listing** (`app/blogs/page.jsx`)
+
+- **Purpose**: Displays all available blog posts in a grid layout
+- **Features**:
+  - Responsive grid (1 column mobile, 2 tablet, 3 desktop)
+  - Blog cards with title, excerpt, date, and read time
+  - Smooth hover animations
+  - Links to individual blog posts
+- **Customization**:
+  - Update blog data array
+  - Modify card styling or layout
+  - Add pagination or filters
+
+#### **Blog Post** (`app/blogs/[slug]/page.jsx`)
+
+- **Purpose**: Dynamic route for individual blog posts
+- **Features**:
+  - URL-friendly slugs generated from blog titles
+  - Full blog content with headings and paragraphs
+  - Author, date, and read time metadata
+  - Back to blogs navigation
+  - Same Navbar and Footer as landing page
+- **Routing**: Uses Next.js dynamic routes (`[slug]`)
+- **Customization**:
+  - Update blog content data structure
+  - Modify article styling
+  - Add related posts or comments section
+
 ### Utility Components
 
 #### **PageLayout** (`components/PageLayout.jsx`)
@@ -241,6 +300,131 @@ The template consists of modular, reusable components. Here's what each section 
 - **Purpose**: Reusable layout wrapper for additional pages (Privacy, Cookie, 404)
 - **Includes**: Navbar, Mobile Menu, Background, Footer
 - **Usage**: Wrap any page content with `<PageLayout>{children}</PageLayout>`
+
+---
+
+## ✨ Recent Updates
+
+### Version 2.0 - New Features
+
+#### 🎨 Login Form Modal
+
+- **Full-screen animated modal** with split layout:
+  - **Left side**: Beautiful icon card stack with 6 animated cards using Framer Motion
+  - **Right side**: Login form with email, password, Google OAuth, and terms acceptance
+- **Trigger**: Opens when clicking any "Get Started" button (Navbar, Hero, Pricing, Mobile Menu)
+- **Animations**:
+  - Stacked card effect with depth, rotation, and scale transforms
+  - Interactive hover effects on entire stack
+  - Smooth entrance animations for form elements
+
+#### 📝 Blog System
+
+- **Blog Listing Page** (`/blogs`):
+  - Grid layout displaying 6 featured blog posts
+  - Each card shows: title, excerpt, publication date, and estimated read time
+  - Hover effects and smooth transitions
+- **Individual Blog Posts** (`/blogs/[slug]`):
+
+  - Dynamic routing using blog title slugs
+  - Full article layout with headings and paragraphs
+  - Author attribution and metadata
+  - Seamless navigation back to blog listing
+
+- **Sample Blog Topics**:
+  1. The Future of Artificial Intelligence in Business
+  2. Building Scalable Applications with Modern Web Technologies
+  3. Design Thinking: Creating User-Centered Experiences
+  4. Machine Learning: From Theory to Production
+  5. React Performance Optimization Techniques
+  6. The Psychology of User Interface Design
+
+#### 🧭 Enhanced Navigation
+
+- **Updated Navbar**: Now includes links to all pages (Home, Blog, Privacy, Cookie)
+- **Smart Navigation**:
+  - On landing page: Section links scroll smoothly
+  - On other pages: Section links navigate to home page with hash
+  - Page links (Blog, Privacy, Cookie) work consistently across all pages
+- **Footer Updates**: All navigation items now included in footer links
+- **Mobile Menu**: Updated to support both section and page navigation
+
+#### 🔧 Technical Improvements
+
+- **Hydration Fixes**:
+
+  - Added proper SSR/client-side checks for `window` and `document` access
+  - Fixed `usePathname()` to handle SSR scenarios
+  - Changed invalid `<navbar>` tag to semantic `<nav>` tag
+  - All components now render consistently on server and client
+
+- **Version Compatibility**:
+  - Updated React from 19.x to 18.2.0 for Next.js 15.0.0 compatibility
+  - Fixed dependency resolution for Vercel builds
+
+#### 🎯 Icon Card Stack Animation
+
+The login form features an innovative stacked card animation:
+
+- **6 Icon Cards**: Heater, Sparkles, Star, Heart, Clock, Moon
+- **3D Stack Effect**: Cards positioned with depth, rotation, and scale
+- **Interactive**: Entire stack rotates and scales on hover
+- **Individual Cards**: Each card lifts and scales on individual hover
+- **Smooth Animations**: Uses `useMotionValue` and `useTransform` for fluid motion
+
+### How to Use New Features
+
+#### Opening Login Modal
+
+The login modal opens automatically when users click any "Get Started" button:
+
+- In the Navbar (desktop)
+- In the Hero Section
+- In each Pricing Plan card
+- In the Mobile Menu
+
+#### Adding New Blog Posts
+
+Edit `app/blogs/page.jsx` to add blog entries:
+
+```javascript
+const blogs = [
+	{
+		title: "Your Blog Title",
+		excerpt: "Your excerpt here...",
+		date: "Month Day, Year",
+		readTime: "X min read",
+	},
+	// Add more blogs
+];
+```
+
+Then add corresponding content in `app/blogs/[slug]/page.jsx` in the `blogContent` object:
+
+```javascript
+const blogContent = {
+	"your-blog-slug": {
+		title: "Your Blog Title",
+		date: "Month Day, Year",
+		readTime: "X min read",
+		author: "Author Name",
+		content: [
+			{ type: "paragraph", text: "Your content..." },
+			{ type: "heading", text: "Section Title" },
+			// More content
+		],
+	},
+};
+```
+
+#### Customizing Login Form
+
+Edit `app/LandingPage/components/LoginForm.jsx`:
+
+- Update form fields and validation
+- Integrate with your authentication API
+- Modify icon colors and card styling
+- Customize animations timing
 
 ---
 
@@ -254,11 +438,12 @@ The template consists of modular, reusable components. Here's what each section 
 
 2. **Landing Page** (`app/LandingPage/index.jsx`)
 
-   - Initializes state (billing period, mobile menu)
-   - Defines scroll functionality
+   - Initializes state (billing period, mobile menu, login modal)
+   - Defines scroll functionality with SSR-safe checks
+   - Handles hash navigation for section links
    - Renders all section components in order:
      ```
-     Background → Navbar → MobileMenu → Main Content → Footer
+     Background → Navbar → MobileMenu → Main Content → Footer → LoginForm
      ```
 
 3. **State Management**
@@ -266,7 +451,9 @@ The template consists of modular, reusable components. Here's what each section 
    - **Local State**: Uses React `useState` for:
      - Billing period toggle (monthly/yearly)
      - Mobile menu open/close state
+     - Login modal visibility state
    - **Props Drilling**: State passed down to child components as props
+   - **Modal Control**: `onOpenLogin` prop passed to all "Get Started" buttons
 
 4. **Animation Flow**
 
@@ -934,14 +1121,21 @@ For template buyers, **provide all three options** with instructions:
    - Import your GitHub repository
    - Vercel auto-detects Next.js settings
 
-3. **Configure environment variables** (if using API route):
+3. **Important - Fix Dependency Issues**:
+
+   The project uses React 18.2.0 (compatible with Next.js 15.0.0). If you encounter build errors:
+
+   - Ensure `package.json` has `"react": "^18.2.0"` and `"react-dom": "^18.2.0"`
+   - Vercel will automatically install correct dependencies
+
+4. **Configure environment variables** (if using API route):
 
    - Go to Project Settings → Environment Variables
    - Add: `EMAIL_USER`, `EMAIL_PASSWORD`, `CONTACT_EMAIL`
 
-4. **Deploy** - Vercel builds and deploys automatically!
+5. **Deploy** - Vercel builds and deploys automatically!
 
-5. **Custom domain** (optional):
+6. **Custom domain** (optional):
    - Add your domain in Project Settings → Domains
 
 **Advantages**:
@@ -950,6 +1144,7 @@ For template buyers, **provide all three options** with instructions:
 - ✅ Automatic deployments
 - ✅ Built-in CDN
 - ✅ Zero configuration needed
+- ✅ Handles Next.js routing including dynamic routes (`/blogs/[slug]`)
 
 ---
 
@@ -991,11 +1186,20 @@ CMD ["npm", "start"]
 ## 🛠️ Technologies Used
 
 - **[Next.js 15.0](https://nextjs.org/)** - React framework with App Router
-- **[React 19](https://react.dev/)** - UI library
+- **[React 18.2](https://react.dev/)** - UI library (compatible with Next.js 15)
 - **[Tailwind CSS 3.4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Framer Motion 11](https://www.framer.com/motion/)** - Animation library
+- **[Framer Motion 11](https://www.framer.com/motion/)** - Animation library with `useMotionValue` and `useTransform`
 - **[Lucide React](https://lucide.dev/)** - Icon library
+- **Next.js Dynamic Routes** - For blog posts (`/blogs/[slug]`)
 - **TypeScript-ready** - Can be converted to TypeScript
+
+### Key Framer Motion Features Used
+
+- **AnimatePresence**: For modal and menu animations
+- **useMotionValue**: For reactive motion values in card stack
+- **useTransform**: For smooth value transformations
+- **Spring Physics**: Natural motion animations throughout
+- **Viewport Animations**: Sections animate when scrolled into view
 
 ---
 
