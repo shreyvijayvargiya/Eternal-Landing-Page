@@ -1,6 +1,6 @@
 import { Heater } from "lucide-react";
 import Link from "next/link";
-import { navLinks } from "../constants";
+import { navigationItems } from "../constants";
 
 const Footer = () => {
 	return (
@@ -22,19 +22,16 @@ const Footer = () => {
 							Navigation
 						</h5>
 						<ul className="space-y-3">
-							{navLinks.map((link) => {
-								const sectionId = link.toLowerCase();
-								return (
-									<li key={link}>
-										<Link
-											href={`/${sectionId === "about" ? "" : sectionId}`}
-											className="text-zinc-400 hover:text-white transition-colors text-sm"
-										>
-											{link}
-										</Link>
-									</li>
-								);
-							})}
+							{navigationItems.map((item) => (
+								<li key={item.label}>
+									<Link
+										href={item.href}
+										className="text-zinc-400 hover:text-white transition-colors text-sm"
+									>
+										{item.label}
+									</Link>
+								</li>
+							))}
 						</ul>
 					</div>
 

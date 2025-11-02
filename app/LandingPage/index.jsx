@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BackgroundDots from "./components/BackgroundDots";
 import Navbar from "./components/Navbar";
 import MobileMenu from "./components/MobileMenu";
@@ -33,6 +33,39 @@ const EternalLandingPage = () => {
 			});
 		}
 	};
+
+	// Handle hash navigation when page loads or hash changes
+	useEffect(() => {
+		const handleHashScroll = () => {
+			if (window.location.hash) {
+				const hash = window.location.hash.substring(1); // Remove #
+				setTimeout(() => {
+					const element = document.getElementById(hash);
+					if (element) {
+						const offset = 80;
+						const elementPosition = element.getBoundingClientRect().top;
+						const offsetPosition =
+							elementPosition + window.pageYOffset - offset;
+
+						window.scrollTo({
+							top: offsetPosition,
+							behavior: "smooth",
+						});
+					}
+				}, 100); // Small delay to ensure page is fully loaded
+			}
+		};
+
+		// Scroll on initial load if there's a hash
+		handleHashScroll();
+
+		// Listen for hash changes
+		window.addEventListener("hashchange", handleHashScroll);
+
+		return () => {
+			window.removeEventListener("hashchange", handleHashScroll);
+		};
+	}, []);
 
 	return (
 		<div className="relative w-full h-full bg-black">

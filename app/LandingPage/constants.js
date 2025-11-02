@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { BsGoogle } from "react-icons/bs";
 
+// Navigation links for landing page sections
 export const navLinks = [
 	"About",
 	"Features",
@@ -21,6 +22,28 @@ export const navLinks = [
 	"Pricing",
 	"Contact",
 	"FAQ",
+];
+
+// Navigation links for pages (routes)
+export const pageNavLinks = [
+	{ label: "Home", href: "/", isSection: false },
+	{ label: "Blog", href: "/blogs", isSection: false },
+	{ label: "Privacy", href: "/privacy", isSection: false },
+	{ label: "Cookie", href: "/cookie", isSection: false },
+];
+
+// Combined navigation structure
+export const navigationItems = [
+	// Landing page sections
+	{ label: "About", href: "#about", isSection: true },
+	{ label: "Features", href: "#features", isSection: true },
+	{ label: "Services", href: "#services", isSection: true },
+	{ label: "Results", href: "#results", isSection: true },
+	{ label: "Pricing", href: "#pricing", isSection: true },
+	{ label: "Contact", href: "#contact", isSection: true },
+	{ label: "FAQ", href: "#faq", isSection: true },
+	// Page links
+	{ label: "Blog", href: "/blogs", isSection: false },
 ];
 
 export const teams = [
