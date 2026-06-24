@@ -1,5 +1,5 @@
-import EternalLandingPage from './LandingPage'
+import EternalLandingPage from './LandingPages/EternalLandingPage'
 
 export default function Home() {
-  return <EternalLandingPage />
+	return <EternalLandingPage />
 }
